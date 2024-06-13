@@ -27,6 +27,7 @@ radius = 15.0
 height = 46.0
 
 [node name="Bird" type="CharacterBody2D"]
+z_index = 2
 script = ExtResource("1_bhstf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
