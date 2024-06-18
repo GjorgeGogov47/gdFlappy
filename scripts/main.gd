@@ -29,14 +29,13 @@ func new_game():
 
 func _input(event):
 	if game_over == false:
-		if event is InputEventMouseButton:
-			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-				if game_running == false:
-					start_game()
-				else:
-					if $Bird.flying:
-						$Bird.flap()
-						check_top()
+		if Input.is_action_just_pressed("leftClick") or Input.is_action_just_pressed("spaceBar"):
+			if game_running == false:
+				start_game()
+			else:
+				if $Bird.flying:
+					$Bird.flap()
+					check_top()
 
 func start_game():
 	game_running = true
