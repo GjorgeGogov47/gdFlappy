@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_m7ogn"]
 [ext_resource type="PackedScene" uid="uid://bw0324fv00spx" path="res://scenes/pipe.tscn" id="2_m6t45"]
 [ext_resource type="PackedScene" uid="uid://vy66kgwgexg" path="res://scenes/bird.tscn" id="2_rk1al"]
-[ext_resource type="Texture2D" uid="uid://bdirayked3m77" path="res://assets/backgrounderino.png" id="3_ca16b"]
+[ext_resource type="Texture2D" uid="uid://bdirayked3m77" path="res://assets/sprites/backgrounderino.png" id="3_ca16b"]
 [ext_resource type="PackedScene" uid="uid://chn3kh20xa6xj" path="res://scenes/ground.tscn" id="4_437ca"]
 [ext_resource type="PackedScene" uid="uid://bxdplus4dri2x" path="res://scenes/game_over.tscn" id="6_w7mrb"]
 
@@ -12,6 +12,7 @@ script = ExtResource("1_m7ogn")
 pipe_scene = ExtResource("2_m6t45")
 
 [node name="Background" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.784314)
 position = Vector2(432, 384)
 texture = ExtResource("3_ca16b")
 

@@ -13,6 +13,7 @@ var pipes : Array
 const PIPE_DELAY : int = 100
 const PIPE_RANGE : int = 200
 
+
 #Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_window().size

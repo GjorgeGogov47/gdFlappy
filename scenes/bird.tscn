@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://vy66kgwgexg"]
 
-[ext_resource type="Texture2D" uid="uid://dfuofh4nwer0n" path="res://assets/bird1.png" id="1_3myj8"]
+[ext_resource type="Texture2D" uid="uid://dfuofh4nwer0n" path="res://assets/sprites/bird1.png" id="1_3myj8"]
 [ext_resource type="Script" path="res://scripts/bird.gd" id="1_bhstf"]
-[ext_resource type="Texture2D" uid="uid://533ubvnyvpxe" path="res://assets/bird2.png" id="2_6qmcj"]
-[ext_resource type="Texture2D" uid="uid://cb3fw6j2c364v" path="res://assets/bird3.png" id="3_jugmj"]
-[ext_resource type="Texture2D" uid="uid://bver2aukm530k" path="res://assets/grujo.png" id="5_rgtto"]
-[ext_resource type="Texture2D" uid="uid://hueb1fdm778h" path="res://assets/grujoYamcha.png" id="6_ps0tb"]
+[ext_resource type="Texture2D" uid="uid://533ubvnyvpxe" path="res://assets/sprites/bird2.png" id="2_6qmcj"]
+[ext_resource type="Texture2D" uid="uid://cb3fw6j2c364v" path="res://assets/sprites/bird3.png" id="3_jugmj"]
+[ext_resource type="Texture2D" uid="uid://bver2aukm530k" path="res://assets/sprites/grujo.png" id="5_rgtto"]
+[ext_resource type="Texture2D" uid="uid://hueb1fdm778h" path="res://assets/sprites/grujoYamcha.png" id="6_ps0tb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p7v24"]
 atlas = ExtResource("5_rgtto")
@@ -72,7 +72,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"ljetivNaKrov",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
