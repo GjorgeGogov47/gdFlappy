@@ -1,19 +1,19 @@
 [gd_scene load_steps=8 format=3 uid="uid://bw0324fv00spx"]
 
-[ext_resource type="Texture2D" uid="uid://den4sx3n8oo4t" path="res://assets/pipe.png" id="1_cjwb5"]
 [ext_resource type="Script" path="res://scripts/pipe.gd" id="1_k6osw"]
+[ext_resource type="Texture2D" uid="uid://baefcnmlfg5ql" path="res://assets/stolb.png" id="2_kkw31"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bxu8k"]
-size = Vector2(80, 32)
+size = Vector2(96, 46)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjyb8"]
-size = Vector2(66, 528)
+size = Vector2(48, 480)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hujs"]
-size = Vector2(80, 32)
+size = Vector2(112, 62)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktakv"]
-size = Vector2(66, 520)
+size = Vector2(48, 488)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jckq0"]
 size = Vector2(24, 192)
@@ -22,28 +22,34 @@ size = Vector2(24, 192)
 script = ExtResource("1_k6osw")
 
 [node name="Upper" type="Sprite2D" parent="."]
-texture = ExtResource("1_cjwb5")
+position = Vector2(9.53674e-07, 1258.71)
+scale = Vector2(2.56, 4.33044)
+texture = ExtResource("2_kkw31")
 offset = Vector2(0, -380)
 flip_v = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 120)
+z_index = 1
+position = Vector2(0, 137)
 shape = SubResource("RectangleShape2D_bxu8k")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 400)
+z_index = 1
+position = Vector2(0, 400)
 shape = SubResource("RectangleShape2D_hjyb8")
 
 [node name="Lower" type="Sprite2D" parent="."]
-texture = ExtResource("1_cjwb5")
+position = Vector2(-1.43051e-06, -1192.8)
+scale = Vector2(2.24, 4.12793)
+texture = ExtResource("2_kkw31")
 offset = Vector2(0, 380)
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-position = Vector2(0, -120)
+position = Vector2(0, -145)
 shape = SubResource("RectangleShape2D_0hujs")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -396)
+position = Vector2(0, -420)
 shape = SubResource("RectangleShape2D_ktakv")
 
 [node name="ScoreArea" type="Area2D" parent="."]

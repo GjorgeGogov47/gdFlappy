@@ -36,7 +36,7 @@ func new_game():
 
 func _input(event):
 	if game_over == false:
-		if Input.is_action_just_pressed("leftClick") or Input.is_action_just_pressed("spaceBar"):
+		if Input.is_action_just_pressed("fly"):
 			if game_running == false:
 				start_game()
 			else:
@@ -103,4 +103,5 @@ func _on_ground_hit():
 
 
 func _on_game_over_restart():
+	$Bird/AnimatedSprite2D.play("ljetivNaKrov")
 	new_game()
