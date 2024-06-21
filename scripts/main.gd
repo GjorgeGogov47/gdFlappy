@@ -27,7 +27,7 @@ func new_game():
 	$GameOver.hide()
 	scroll = 0
 	score = 0
-	$ScoreLabel.text = "SCORE: 0"
+	$ScoreLabel.text = "Легален кеш: 0"
 	#reset pipes
 	get_tree().call_group("pipeGroup", "queue_free")
 	pipes.clear()
@@ -74,13 +74,13 @@ func generate_pipes():
 	pipe.position.x = screen_size.x + PIPE_DELAY
 	pipe.position.y = (screen_size.y - ground_height) / 2 + randi_range(-PIPE_RANGE, PIPE_RANGE)
 	pipe.hit.connect(bird_hit)
-	pipe.scored.connect(scored)
+	pipe.scored.connect(scoredFunc.bind(pipe))
 	add_child(pipe)
 	pipes.append(pipe)
 
-func scored():
-	score += 1
-	$ScoreLabel.text = "SCORE: " + str(score)
+func scoredFunc(pipeObj):
+	score += pipeObj.banknotaScore
+	$ScoreLabel.text = "Легален кеш: " + str(score)
 
 func check_top():
 	if $Bird.position.y < 0:

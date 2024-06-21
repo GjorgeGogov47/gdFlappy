@@ -16,7 +16,7 @@ size = Vector2(112, 62)
 size = Vector2(48, 488)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jckq0"]
-size = Vector2(24, 192)
+size = Vector2(24, 208)
 
 [node name="Pipe" type="Area2D" groups=["pipeGroup"]]
 script = ExtResource("1_k6osw")
@@ -55,8 +55,10 @@ shape = SubResource("RectangleShape2D_ktakv")
 [node name="ScoreArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreArea"]
-position = Vector2(52, 0)
 shape = SubResource("RectangleShape2D_jckq0")
+
+[node name="BanknoteSprite" type="Sprite2D" parent="ScoreArea"]
+scale = Vector2(0.9, 0.9)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="ScoreArea" to="." method="_on_score_area_body_entered"]

@@ -41,7 +41,7 @@ offset_right = 34.5
 offset_bottom = 23.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 40
-text = "SCORE: 0"
+text = "Легален кеш: 0"
 metadata/_edit_use_anchors_ = true
 
 [node name="GameOver" parent="." instance=ExtResource("6_w7mrb")]
