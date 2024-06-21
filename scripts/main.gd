@@ -88,19 +88,28 @@ func check_top():
 		stop_game()
 
 func stop_game():
+	var fallingVoiceLineIndex : int = randi_range(1,8)
+	var fallingVoiceLine : AudioStreamPlayer2D = get_node("FallingSounds/AudioStreamPlayer2D" + str(fallingVoiceLineIndex))
+	if fallingVoiceLine is AudioStreamPlayer2D:
+		fallingVoiceLine.play()
+	
 	$PipeTimer.stop()
 	$GameOver.show()
 	$Bird.flying = false
 	game_running = false
 	game_over = true
+	
 
 func bird_hit():
 	$Bird.falling = true
-	stop_game()
+	if game_running == true:
+		stop_game()
 
 func _on_ground_hit():
+	$Bird/AnimatedSprite2D.play("yamcha")
 	$Bird.falling = false
-	stop_game()
+	if game_running == true:
+		stop_game()
 
 
 func _on_game_over_restart():

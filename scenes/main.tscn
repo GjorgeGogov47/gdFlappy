@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dh86hymlhfaqf"]
+[gd_scene load_steps=15 format=3 uid="uid://dh86hymlhfaqf"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_m7ogn"]
 [ext_resource type="PackedScene" uid="uid://bw0324fv00spx" path="res://scenes/pipe.tscn" id="2_m6t45"]
@@ -6,6 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://bdirayked3m77" path="res://assets/sprites/backgrounderino.png" id="3_ca16b"]
 [ext_resource type="PackedScene" uid="uid://chn3kh20xa6xj" path="res://scenes/ground.tscn" id="4_437ca"]
 [ext_resource type="PackedScene" uid="uid://bxdplus4dri2x" path="res://scenes/game_over.tscn" id="6_w7mrb"]
+[ext_resource type="AudioStream" uid="uid://brf6qxoc7grnx" path="res://assets/audio/ispoapsija.mp3" id="7_55jf6"]
+[ext_resource type="AudioStream" uid="uid://cp76fwlq5ln67" path="res://assets/audio/keSeVratam.mp3" id="8_01cn0"]
+[ext_resource type="AudioStream" uid="uid://cjkecuoj32u6n" path="res://assets/audio/krizaIDestabilizacija.mp3" id="9_hsqho"]
+[ext_resource type="AudioStream" uid="uid://cae3iqh4oybt0" path="res://assets/audio/nekaMeUapsi.mp3" id="10_6ojgl"]
+[ext_resource type="AudioStream" uid="uid://cfrbv328jx4rc" path="res://assets/audio/nekaUdriPoMene.mp3" id="11_kr5xh"]
+[ext_resource type="AudioStream" uid="uid://dchtqelssyvel" path="res://assets/audio/nepravednoOsuden.mp3" id="12_vdxwx"]
+[ext_resource type="AudioStream" uid="uid://dscl4pt56n7lf" path="res://assets/audio/politickiAzil.mp3" id="13_8jky1"]
+[ext_resource type="AudioStream" uid="uid://y0mgdk1sjbng" path="res://assets/audio/transportiran.mp3" id="14_hcvlg"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_m7ogn")
@@ -37,6 +45,32 @@ text = "SCORE: 0"
 metadata/_edit_use_anchors_ = true
 
 [node name="GameOver" parent="." instance=ExtResource("6_w7mrb")]
+
+[node name="FallingSounds" type="Node" parent="."]
+
+[node name="AudioStreamPlayer2D1" type="AudioStreamPlayer2D" parent="FallingSounds"]
+stream = ExtResource("7_55jf6")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="FallingSounds"]
+stream = ExtResource("8_01cn0")
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="FallingSounds"]
+stream = ExtResource("9_hsqho")
+
+[node name="AudioStreamPlayer2D4" type="AudioStreamPlayer2D" parent="FallingSounds"]
+stream = ExtResource("10_6ojgl")
+
+[node name="AudioStreamPlayer2D5" type="AudioStreamPlayer2D" parent="FallingSounds"]
+stream = ExtResource("11_kr5xh")
+
+[node name="AudioStreamPlayer2D6" type="AudioStreamPlayer2D" parent="FallingSounds"]
+stream = ExtResource("12_vdxwx")
+
+[node name="AudioStreamPlayer2D7" type="AudioStreamPlayer2D" parent="FallingSounds"]
+stream = ExtResource("13_8jky1")
+
+[node name="AudioStreamPlayer2D8" type="AudioStreamPlayer2D" parent="FallingSounds"]
+stream = ExtResource("14_hcvlg")
 
 [connection signal="hit" from="Ground" to="." method="_on_ground_hit"]
 [connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]
