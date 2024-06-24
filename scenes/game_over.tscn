@@ -1,7 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxdplus4dri2x"]
+[gd_scene load_steps=20 format=3 uid="uid://bxdplus4dri2x"]
 
 [ext_resource type="Texture2D" uid="uid://c57fej47adq38" path="res://assets/sprites/restart.png" id="1_6h832"]
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_lsmjf"]
+[ext_resource type="Texture2D" uid="uid://bm7yiddhyhee3" path="res://assets/sprites/leaderboards.png" id="3_4frl8"]
+[ext_resource type="Texture2D" uid="uid://2hq8at3w44sj" path="res://assets/sprites/score.png" id="4_j3vle"]
+[ext_resource type="Texture2D" uid="uid://d372oo1e1ud6x" path="res://assets/sprites/gui-refresh-icon-2048x2048-xgbnerm5.png" id="5_53nuj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frhu4"]
+bg_color = Color(0.67451, 0.592157, 0.415686, 0.627451)
+
+[sub_resource type="Theme" id="Theme_sd7v6"]
+ScrollContainer/styles/panel = SubResource("StyleBoxFlat_frhu4")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ftt2x"]
 texture = ExtResource("1_6h832")
@@ -12,16 +21,110 @@ texture = ExtResource("1_6h832")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1vxyd"]
 texture = ExtResource("1_6h832")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cbcrc"]
+texture = ExtResource("3_4frl8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_koqh7"]
+texture = ExtResource("3_4frl8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kyilx"]
+texture = ExtResource("3_4frl8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dv22t"]
+texture = ExtResource("4_j3vle")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rii2l"]
+texture = ExtResource("4_j3vle")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3p1pm"]
+texture = ExtResource("4_j3vle")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yib74"]
+texture = ExtResource("5_53nuj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_efird"]
+texture = ExtResource("5_53nuj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jeyvl"]
+texture = ExtResource("5_53nuj")
+
 [node name="GameOver" type="CanvasLayer"]
 script = ExtResource("1_lsmjf")
 
-[node name="RestartButton" type="Button" parent="."]
-offset_left = 342.0
-offset_top = 350.0
-offset_right = 502.0
-offset_bottom = 413.0
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -5
+offset_left = 228.0
+offset_top = 384.0
+offset_right = 684.0
+offset_bottom = 560.0
+color = Color(0.73763, 0.514809, 0.114179, 1)
+
+[node name="leaderBoardScroll" type="ScrollContainer" parent="ColorRect"]
+visible = false
+z_index = 5
+layout_mode = 0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 452.0
+offset_bottom = 416.0
+theme = SubResource("Theme_sd7v6")
+
+[node name="leaderBoardLabel" type="Label" parent="ColorRect/leaderBoardScroll"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+
+[node name="RestartButton" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 8.0
+offset_right = 293.0
+offset_bottom = 59.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_ftt2x")
 theme_override_styles/hover = SubResource("StyleBoxTexture_osc6g")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_1vxyd")
 
-[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[node name="LeaderboardsButton" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 120.0
+offset_right = 198.5
+offset_bottom = 171.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_cbcrc")
+theme_override_styles/hover = SubResource("StyleBoxTexture_koqh7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kyilx")
+
+[node name="EnterScoreButton" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 332.0
+offset_top = 120.0
+offset_right = 451.0
+offset_bottom = 171.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_dv22t")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rii2l")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_3p1pm")
+
+[node name="RefreshButton" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 424.0
+offset_right = 275.0
+offset_bottom = 473.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_yib74")
+theme_override_styles/hover = SubResource("StyleBoxTexture_efird")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jeyvl")
+
+[node name="UserTextInput" type="TextEdit" parent="ColorRect"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 64.0
+offset_right = 372.0
+offset_bottom = 104.0
+placeholder_text = "Внеси име за во leaderboard"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="ColorRect/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="ColorRect/LeaderboardsButton" to="." method="_on_leaderboards_button_pressed"]
+[connection signal="pressed" from="ColorRect/EnterScoreButton" to="." method="_on_enter_score_button_pressed"]
