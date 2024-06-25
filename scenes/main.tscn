@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dh86hymlhfaqf"]
+[gd_scene load_steps=19 format=3 uid="uid://dh86hymlhfaqf"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_m7ogn"]
 [ext_resource type="PackedScene" uid="uid://bw0324fv00spx" path="res://scenes/pipe.tscn" id="2_m6t45"]
@@ -14,6 +14,18 @@
 [ext_resource type="AudioStream" uid="uid://dchtqelssyvel" path="res://assets/audio/nepravednoOsuden.mp3" id="12_vdxwx"]
 [ext_resource type="AudioStream" uid="uid://dscl4pt56n7lf" path="res://assets/audio/politickiAzil.mp3" id="13_8jky1"]
 [ext_resource type="AudioStream" uid="uid://y0mgdk1sjbng" path="res://assets/audio/transportiran.mp3" id="14_hcvlg"]
+[ext_resource type="Texture2D" uid="uid://ni61s3gdtd6j" path="res://assets/sprites/music-icon.png" id="15_h2sfn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wisi0"]
+texture = ExtResource("15_h2sfn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rhe57"]
+texture = ExtResource("15_h2sfn")
+modulate_color = Color(1, 1, 1, 0.431373)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jxaq5"]
+texture = ExtResource("15_h2sfn")
+modulate_color = Color(1, 1, 1, 0.784314)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_m7ogn")
@@ -40,6 +52,7 @@ offset_left = -34.5
 offset_right = 34.5
 offset_bottom = 23.0
 grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "Легален кеш: 0"
 metadata/_edit_use_anchors_ = true
@@ -72,6 +85,28 @@ stream = ExtResource("13_8jky1")
 [node name="AudioStreamPlayer2D8" type="AudioStreamPlayer2D" parent="FallingSounds"]
 stream = ExtResource("14_hcvlg")
 
+[node name="MusicToggle" type="Button" parent="."]
+z_index = 5
+offset_left = 816.0
+offset_top = 16.0
+offset_right = 848.0
+offset_bottom = 56.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_wisi0")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rhe57")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jxaq5")
+
+[node name="warningLabel" type="Label" parent="."]
+visible = false
+offset_left = 344.0
+offset_top = 200.0
+offset_right = 568.0
+offset_bottom = 272.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Комуњар"
+
 [connection signal="hit" from="Ground" to="." method="_on_ground_hit"]
 [connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]
 [connection signal="restart" from="GameOver" to="." method="_on_game_over_restart"]
+[connection signal="pressed" from="MusicToggle" to="." method="_on_music_toggle_pressed"]

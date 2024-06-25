@@ -13,6 +13,9 @@ var pipes : Array
 const PIPE_DELAY : int = 100
 const PIPE_RANGE : int = 200
 
+var musicPlaybackVar : float
+var musicFLagFirst : bool = true
+
 
 #Called when the node enters the scene tree for the first time.
 func _ready():
@@ -94,6 +97,7 @@ func stop_game():
 		fallingVoiceLine.play()
 	
 	$PipeTimer.stop()
+	$GameOver.getGameScoreAndReset(score)
 	$GameOver.show()
 	$Bird.flying = false
 	game_running = false
@@ -115,3 +119,20 @@ func _on_ground_hit():
 func _on_game_over_restart():
 	$Bird/AnimatedSprite2D.play("ljetivNaKrov")
 	new_game()
+
+
+func _on_music_toggle_pressed():
+	var globalMusicNode : AudioStreamPlayer2D = get_node("/root/Music")
+	if globalMusicNode is AudioStreamPlayer2D:
+		if globalMusicNode.playing:
+			musicPlaybackVar = globalMusicNode.get_playback_position()
+			globalMusicNode.stop()
+		elif !globalMusicNode.playing:
+			globalMusicNode.play(musicPlaybackVar)
+	
+	if musicFLagFirst:
+		musicFLagFirst = false
+		$warningLabel.show()
+		while $warningLabel.modulate.a > 0:
+			$warningLabel.modulate.a -= 0.1
+			await get_tree().create_timer(0.15).timeout

@@ -60,5 +60,7 @@ shape = SubResource("RectangleShape2D_jckq0")
 [node name="BanknoteSprite" type="Sprite2D" parent="ScoreArea"]
 scale = Vector2(0.9, 0.9)
 
+[node name="coinCollectStream" type="AudioStreamPlayer2D" parent="ScoreArea"]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="ScoreArea" to="." method="_on_score_area_body_entered"]

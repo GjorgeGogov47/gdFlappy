@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://bxdplus4dri2x"]
+[gd_scene load_steps=24 format=3 uid="uid://bxdplus4dri2x"]
 
 [ext_resource type="Texture2D" uid="uid://c57fej47adq38" path="res://assets/sprites/restart.png" id="1_6h832"]
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_lsmjf"]
 [ext_resource type="Texture2D" uid="uid://bm7yiddhyhee3" path="res://assets/sprites/leaderboards.png" id="3_4frl8"]
 [ext_resource type="Texture2D" uid="uid://2hq8at3w44sj" path="res://assets/sprites/score.png" id="4_j3vle"]
 [ext_resource type="Texture2D" uid="uid://d372oo1e1ud6x" path="res://assets/sprites/gui-refresh-icon-2048x2048-xgbnerm5.png" id="5_53nuj"]
+[ext_resource type="Texture2D" uid="uid://dpktke8rmsplv" path="res://assets/sprites/enterUsername.png" id="6_mej0x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frhu4"]
 bg_color = Color(0.67451, 0.592157, 0.415686, 0.627451)
@@ -17,6 +18,7 @@ texture = ExtResource("1_6h832")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_osc6g"]
 texture = ExtResource("1_6h832")
+modulate_color = Color(1, 1, 1, 0.431373)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1vxyd"]
 texture = ExtResource("1_6h832")
@@ -26,6 +28,7 @@ texture = ExtResource("3_4frl8")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_koqh7"]
 texture = ExtResource("3_4frl8")
+modulate_color = Color(1, 1, 1, 0.431373)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kyilx"]
 texture = ExtResource("3_4frl8")
@@ -35,6 +38,7 @@ texture = ExtResource("4_j3vle")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rii2l"]
 texture = ExtResource("4_j3vle")
+modulate_color = Color(1, 1, 1, 0.431373)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3p1pm"]
 texture = ExtResource("4_j3vle")
@@ -44,9 +48,20 @@ texture = ExtResource("5_53nuj")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_efird"]
 texture = ExtResource("5_53nuj")
+modulate_color = Color(1, 1, 1, 0.431373)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jeyvl"]
 texture = ExtResource("5_53nuj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_82xux"]
+texture = ExtResource("6_mej0x")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p4b7d"]
+texture = ExtResource("6_mej0x")
+modulate_color = Color(1, 1, 1, 0.431373)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2xlw4"]
+texture = ExtResource("6_mej0x")
 
 [node name="GameOver" type="CanvasLayer"]
 script = ExtResource("1_lsmjf")
@@ -56,9 +71,9 @@ script = ExtResource("1_lsmjf")
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -5
 offset_left = 228.0
-offset_top = 384.0
+offset_top = 360.0
 offset_right = 684.0
-offset_bottom = 560.0
+offset_bottom = 584.0
 color = Color(0.73763, 0.514809, 0.114179, 1)
 
 [node name="leaderBoardScroll" type="ScrollContainer" parent="ColorRect"]
@@ -88,10 +103,10 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_1vxyd")
 
 [node name="LeaderboardsButton" type="Button" parent="ColorRect"]
 layout_mode = 0
-offset_left = 5.0
-offset_top = 120.0
-offset_right = 198.5
-offset_bottom = 171.0
+offset_left = 4.0
+offset_top = 168.0
+offset_right = 197.5
+offset_bottom = 219.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_cbcrc")
 theme_override_styles/hover = SubResource("StyleBoxTexture_koqh7")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_kyilx")
@@ -99,14 +114,15 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_kyilx")
 [node name="EnterScoreButton" type="Button" parent="ColorRect"]
 layout_mode = 0
 offset_left = 332.0
-offset_top = 120.0
+offset_top = 168.0
 offset_right = 451.0
-offset_bottom = 171.0
+offset_bottom = 219.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_dv22t")
 theme_override_styles/hover = SubResource("StyleBoxTexture_rii2l")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_3p1pm")
 
 [node name="RefreshButton" type="Button" parent="ColorRect"]
+visible = false
 layout_mode = 0
 offset_left = 220.0
 offset_top = 424.0
@@ -117,14 +133,39 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_efird")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_jeyvl")
 
 [node name="UserTextInput" type="TextEdit" parent="ColorRect"]
+visible = false
 layout_mode = 0
-offset_left = 108.0
+offset_left = 12.0
 offset_top = 64.0
-offset_right = 372.0
-offset_bottom = 104.0
+offset_right = 388.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 24
 placeholder_text = "Внеси име за во leaderboard"
 
-[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[node name="EnterUsernameButton" type="Button" parent="ColorRect"]
+visible = false
+layout_mode = 0
+offset_left = 396.0
+offset_top = 64.0
+offset_right = 452.0
+offset_bottom = 112.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_82xux")
+theme_override_styles/hover = SubResource("StyleBoxTexture_p4b7d")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2xlw4")
+
+[node name="scoreCalculationLabel" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 64.0
+offset_right = 452.0
+offset_bottom = 112.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 27
+text = "Браво, сега можеш да купиш 
+"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="ColorRect/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="ColorRect/LeaderboardsButton" to="." method="_on_leaderboards_button_pressed"]
 [connection signal="pressed" from="ColorRect/EnterScoreButton" to="." method="_on_enter_score_button_pressed"]
+[connection signal="pressed" from="ColorRect/EnterUsernameButton" to="." method="_on_enter_username_button_pressed"]
