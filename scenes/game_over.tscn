@@ -66,7 +66,9 @@ texture = ExtResource("6_mej0x")
 [node name="GameOver" type="CanvasLayer"]
 script = ExtResource("1_lsmjf")
 
-[node name="HTTPRequest" type="HTTPRequest" parent="."]
+[node name="HTTPRequestGet" type="HTTPRequest" parent="."]
+
+[node name="HTTPRequestPost" type="HTTPRequest" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -5

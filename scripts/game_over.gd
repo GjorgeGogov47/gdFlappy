@@ -8,9 +8,9 @@ func _on_restart_button_pressed():
 	restart.emit()
 
 func _on_leaderboards_button_pressed():
-	if !$HTTPRequest.request_completed.is_connected(_on_get_request_completed):
-		$HTTPRequest.request_completed.connect(_on_get_request_completed)
-	$HTTPRequest.request("https://nagrujofunkcijata.azurewebsites.net/api/GetRows")
+	if !$HTTPRequestGet.request_completed.is_connected(_on_get_request_completed):
+		$HTTPRequestGet.request_completed.connect(_on_get_request_completed)
+	$HTTPRequestGet.request("")
 	
 	$ColorRect.size.y = 481
 	$ColorRect.position.y = 79
@@ -51,17 +51,16 @@ func _on_enter_score_button_pressed():
 func _on_enter_username_button_pressed():
 	$ColorRect/EnterUsernameButton.disabled = true
 	$ColorRect/EnterScoreButton.disabled = true
-	if (lastPlaceScore == 0 or lastPlaceScore < achievedScore) and $ColorRect/UserTextInput.text != "":
-		if !$HTTPRequest.request_completed.is_connected(_on_post_request_completed):
-			$HTTPRequest.request_completed.connect(_on_post_request_completed)
+	if (lastPlaceScore == 0 or lastPlaceScore <= achievedScore) and achievedScore>0 and $ColorRect/UserTextInput.text != "":
+		$HTTPRequestPost.request_completed.connect(_on_post_request_completed)
 		var json = JSON.stringify(
 		{
 			"playerName": $ColorRect/UserTextInput.text,
 			"playerScore": achievedScore
 		})
 		var headers = ["Content-Type: application/json"]
-		$HTTPRequest.request("https://nagrujofunkcijata.azurewebsites.net/api/InsertRow", headers, HTTPClient.METHOD_POST, json)
-	
+		$HTTPRequestPost.request("", headers, HTTPClient.METHOD_POST, json)
+		$HTTPRequestPost.request_completed.disconnect(_on_post_request_completed)
 	
 	$ColorRect/RestartButton.show()
 	$ColorRect/LeaderboardsButton.show()
@@ -117,9 +116,9 @@ func _on_post_request_completed(_result, _response_code, _headers, body):
 
 func _on_refresh_button_pressed():
 	$ColorRect/RefreshButton.disabled = true
-	if !$HTTPRequest.request_completed.is_connected(refreshLeaderboard):
-		$HTTPRequest.request_completed.connect(refreshLeaderboard)
-	$HTTPRequest.request("https://nagrujofunkcijata.azurewebsites.net/api/GetRows")
+	if !$HTTPRequestGet.request_completed.is_connected(refreshLeaderboard):
+		$HTTPRequestGet.request_completed.connect(refreshLeaderboard)
+	$HTTPRequestGet.request("")
 	await get_tree().create_timer(10).timeout 
 	$ColorRect/RefreshButton.disabled = false
 	
